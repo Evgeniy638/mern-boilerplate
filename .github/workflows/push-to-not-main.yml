@@ -1,0 +1,11 @@
+name: Push to not Main
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+
+jobs:
+  Test:
+    uses: ./.github/workflows/test.yml

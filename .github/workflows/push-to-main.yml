@@ -1,0 +1,14 @@
+name: Push to Main
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  Test:
+    uses: ./.github/workflows/test.yml
+  Deploy-To-Heroku:
+    needs: Test
+    uses: ./.github/workflows/deploy-to-heroku.yml
+    secrets: inherit

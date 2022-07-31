@@ -1,6 +1,12 @@
 name: Deploy to Heroku
 
-on: [push]
+on:
+  workflow_call:
+    secrets:
+      HEROKU_API_KEY:
+        required: true
+      HEROKU_APP_NAME:
+        required: true
 
 jobs:
   Deploy-To-Heroku:
@@ -18,7 +24,6 @@ jobs:
         run: npm install
       - name: Install packages dependency
         run: npx lerna bootstrap
-      - run: npm test
       - name: Build client
         run: npm run build:client
       - name: Build and push Docker image to Heroku
