@@ -1,0 +1,22 @@
+name: Test
+
+on:
+  workflow_call:
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    environment: heroku
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '17'
+          cache: 'npm'
+      - name: Install dependency
+        run: npm install
+      - name: Install packages dependency
+        run: npx lerna bootstrap
+      - run: npm test
