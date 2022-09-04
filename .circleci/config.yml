@@ -35,8 +35,8 @@ jobs:
       - checkout
       - install-dependencies
       - run:
-          name: Build client
-          command: npm run build:client
+          name: Build client and backend
+          command: npm run build:all
       - run:
           name: Build and push Docker image to Heroku
           command: |
