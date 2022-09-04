@@ -14,9 +14,6 @@ RUN npm ci --only=production
 # копируем исходный код сервера
 COPY ./packages/server/dist .
 
-# копируем переменные среды
-COPY ./packages/server/.env.production ./
-
 # копируем сбилженный код клиента
 COPY ./packages/client/build /usr/src/app/client/build
 
