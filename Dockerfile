@@ -8,13 +8,18 @@ WORKDIR /usr/src/app/server
 # скопировать оба файла: package.json и package-lock.json
 COPY ./packages/server/package*.json ./
 
-# устновка с=зависимостей
+# устновка зависимостей
 RUN npm ci --only=production
 
 # копируем исходный код сервера
-COPY ./packages/server .
+COPY ./packages/server/dist .
+
+# копируем переменные среды
+COPY ./packages/server/.env.production ./
 
 # копируем сбилженный код клиента
 COPY ./packages/client/build /usr/src/app/client/build
 
-ENTRYPOINT [ "node", "./bin/www" ]
+ENV NODE_ENV=production
+
+ENTRYPOINT [ "node", "./server.js" ]
