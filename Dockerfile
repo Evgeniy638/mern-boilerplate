@@ -8,7 +8,7 @@ WORKDIR /usr/src/app/server
 # скопировать оба файла: package.json и package-lock.json
 COPY ./packages/server/package*.json ./
 
-# устновка с=зависимостей
+# устновка зависимостей
 RUN npm ci --only=production
 
 # копируем исходный код сервера
